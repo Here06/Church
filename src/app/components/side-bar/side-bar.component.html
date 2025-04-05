@@ -1,0 +1,21 @@
+<nav class="top-bar">
+  <ul class="nav-list">
+    <li routerLink="/"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="home-logo">
+      <span class="site-title">NCCCA</span>
+      <img src="assets/logo.png" alt="Logo" />
+    </li>
+    <li routerLink="/calendar" routerLinkActive="active">Calendar</li>
+    <li routerLink="/branches" routerLinkActive="active">Branches</li>
+    <li class="about-us">
+      <span>About Us</span>
+      <ul class="submenu">
+        <li routerLink="/mission">Our Mission</li>
+        <li routerLink="/team">Our Leadership</li>
+        <li routerLink="/contact">Our Story</li>
+      </ul>
+    </li>
+  </ul>
+</nav>

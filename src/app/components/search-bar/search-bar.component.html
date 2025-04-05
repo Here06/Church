@@ -1,0 +1,8 @@
+<mat-form-field appearance="outline" class="search-field">
+  <mat-label>{{ placeholder }}</mat-label>
+  <input
+    matInput
+    [(ngModel)]="searchTerm"
+    (keyup.enter)="onSearch()"
+  />
+</mat-form-field>
