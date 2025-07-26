@@ -1,0 +1,15 @@
+<div class="content">
+<app-branch-details
+  [branchName]="state?.['branchName']"
+  [imagePath]="state?.['imagePath']"
+
+  [address]="{googleLink:state?.['address'],
+              city:state?.['city'],
+              province:state?.['province']
+              }"
+
+  [pastor]="state?.['pastor']"
+  [contact]="{phone:state?.['contact']}"
+  [service]="state?.['service']">
+</app-branch-details>
+</div>

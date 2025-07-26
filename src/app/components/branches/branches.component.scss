@@ -1,0 +1,9 @@
+.branch-grid {
+  width: 100%;
+  display: grid;
+  max-width: 1200px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 24px;
+  padding: 20px;
+  background-color: lightyellow; // just to check boundaries
+}
