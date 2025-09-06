@@ -5,12 +5,12 @@ import {addMonths, subMonths} from "date-fns";
 
 @Component({
   selector: 'app-calendar',
-  standalone: true,
   imports: [
     CommonModule,
     CalendarModule
   ],
   templateUrl: './calendar.component.html',
+  standalone: true,
   styleUrls: ['./calendar.component.scss']
 })
 export class CalendarComponent {

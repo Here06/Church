@@ -3,10 +3,9 @@ import {Component, Input} from "@angular/core";
 
 @Component({
   selector: 'app-branch-card',
-  standalone: true,
-  imports: [
-  ],
+  imports: [],
   templateUrl: './branch-card.component.html',
+  standalone: true,
   styleUrl: './branch-card.component.scss'
 })
 export class BranchCardComponent {

@@ -5,12 +5,12 @@ import {CommonModule} from "@angular/common";
 
 @Component({
   selector: 'app-branch',
-  standalone: true,
   imports: [
     CommonModule,
     BranchDetailsComponent,
   ],
   templateUrl: './branch.component.html',
+  standalone: true,
   styleUrl: './branch.component.scss'
 })
 export class BranchComponent {
