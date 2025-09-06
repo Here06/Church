@@ -5,7 +5,7 @@ import {NgOptimizedImage} from "@angular/common";
 @Component({
   selector: 'app-branch-card',
   imports: [
-    NgOptimizedImage
+
   ],
   templateUrl: './branch-card.component.html',
   standalone: true,
