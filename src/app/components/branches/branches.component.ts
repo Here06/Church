@@ -3,13 +3,14 @@ import {BranchCardComponent} from "../branch-card/branch-card.component";
 import {CommonModule} from "@angular/common";
 
 @Component({
-    selector: 'app-branches',
-    imports: [
-        CommonModule,
-        BranchCardComponent
-    ],
-    templateUrl: './branches.component.html',
-    styleUrl: './branches.component.scss'
+  selector: 'app-branches',
+  imports: [
+    CommonModule,
+    BranchCardComponent
+  ],
+  templateUrl: './branches.component.html',
+  standalone: true,
+  styleUrl: './branches.component.scss'
 })
 export class BranchesComponent {
   branchList = [
