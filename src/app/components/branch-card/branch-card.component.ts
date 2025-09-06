@@ -1,9 +1,12 @@
 import { Router } from '@angular/router';
 import {Component, Input} from "@angular/core";
+import {NgOptimizedImage} from "@angular/common";
 
 @Component({
   selector: 'app-branch-card',
-  imports: [],
+  imports: [
+    NgOptimizedImage
+  ],
   templateUrl: './branch-card.component.html',
   standalone: true,
   styleUrl: './branch-card.component.scss'
