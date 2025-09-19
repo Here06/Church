@@ -3,18 +3,20 @@
   <div class="event-sidebar">
     <h3>Upcoming Events</h3>
     <ul>
-      <li
-        *ngFor="let event of events"
-        (mouseover)="hoveredEvent = event"
-        (mouseleave)="hoveredEvent = null">
-        {{ event.title }}
-
-        <div class="event-description" *ngIf="hoveredEvent === event">
-          <p><strong>{{ event.title }}</strong></p>
-          <p>{{ event.meta?.description }}</p>
-          <p><em>{{ event.start | date: 'mediumDate' }}</em></p>
-        </div>
-      </li>
+      @for (event of events; track event) {
+        <li
+          (mouseover)="hoveredEvent = event"
+          (mouseleave)="hoveredEvent = null">
+          {{ event.title }}
+          @if (hoveredEvent === event) {
+            <div class="event-description">
+              <p><strong>{{ event.title }}</strong></p>
+              <p>{{ event.meta?.description }}</p>
+              <p><em>{{ event.start | date: 'mediumDate' }}</em></p>
+            </div>
+          }
+        </li>
+      }
     </ul>
   </div>
 
@@ -29,10 +31,10 @@
       <button (click)="goToToday()">Today</button>
       <button (click)="goToNextMonth()">Next ▶</button>
     </div>
-      <mwl-calendar-month-view
-        [viewDate]="viewDate"
-        [events]="events">
-      </mwl-calendar-month-view>
+    <mwl-calendar-month-view
+      [viewDate]="viewDate"
+      [events]="events">
+    </mwl-calendar-month-view>
   </div>
 
 
