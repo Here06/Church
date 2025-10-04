@@ -5,9 +5,20 @@ import {ChurchEvent} from "../components/calendar/i-event";
 import {Month} from "date-fns";
 import {EventsRepository} from "../repository/events-repository";
 
+export interface IEventsService {
+
+  getUpcomingEvents(): Observable<ChurchEvent[]>;
+
+  getEventsByMonth(year: number, month: Month): Observable<ChurchEvent[]>;
+
+  getEventsByVenue(venuePath: string): Observable<ChurchEvent[]>;
+
+  getEventsByType(type: string): Observable<ChurchEvent[]>;
+}
+
 @Injectable({providedIn: 'root'})
-export class EventsService {
-  constructor(private repo: EventsRepository) {
+export class EventsService implements IEventsService {
+  constructor(private readonly repo: EventsRepository) {
   }
 
   getUpcomingEvents(): Observable<ChurchEvent[]> {
