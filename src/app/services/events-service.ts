@@ -1,80 +1,45 @@
 import {Injectable} from '@angular/core';
-import {collection, collectionData, doc, Firestore, orderBy, query, where} from '@angular/fire/firestore';
-import {map, Observable} from 'rxjs';
+import {doc, orderBy, where} from '@angular/fire/firestore';
+import {Observable} from 'rxjs';
 import {ChurchEvent} from "../components/calendar/i-event";
-import {ChurchEventDto} from "./church-event-dto";
 import {Month} from "date-fns";
+import {EventsRepository} from "../repository/events-repository";
 
 @Injectable({providedIn: 'root'})
 export class EventsService {
-  constructor(private firestore: Firestore) {
+  constructor(private repo: EventsRepository) {
   }
-
-  getEvents(): Observable<any[]> {
-    const EventsRef = collection(this.firestore, 'Events');
-    return collectionData(EventsRef, {idField: 'id'});
-  }
-
 
   getUpcomingEvents(): Observable<ChurchEvent[]> {
-    const eventsRef = collection(this.firestore, 'Events');
     const today = new Date();
-
-    const eventsQuery = query(
-      eventsRef,
+    return this.repo.getEvents([
       where('start', '>=', today),
       orderBy('start', 'asc')
-    );
-
-    return collectionData<any>(eventsQuery, {idField: 'id'}).pipe(
-      map(events => events.map(event => ChurchEventDto.fromFirestore(event, event.id)))
-    );
+    ]);
   }
 
   getEventsByMonth(year: number, month: Month): Observable<ChurchEvent[]> {
-    const eventsRef = collection(this.firestore, 'Events');
-
-    const startOfMonth = new Date(year, month - 1, 1); // month is 0-indexed
-    const endOfMonth = new Date(year, month, 0, 23, 59, 59, 999); // last day of month
-
-    const eventsQuery = query(
-      eventsRef,
-      where('start', '>=', startOfMonth),
-      where('start', '<=', endOfMonth),
+    const start = new Date(year, month - 1, 1);
+    const end = new Date(year, month, 0, 23, 59, 59, 999);
+    return this.repo.getEvents([
+      where('start', '>=', start),
+      where('start', '<=', end),
       orderBy('start', 'asc')
-    );
-
-    return collectionData<any>(eventsQuery, {idField: 'id'}).pipe(
-      map(events => events.map(event => ChurchEventDto.fromFirestore(event, event.id)))
-    );
+    ]);
   }
 
   getEventsByVenue(venuePath: string): Observable<ChurchEvent[]> {
-    const eventsRef = collection(this.firestore, 'Events');
-
-    const eventsQuery = query(
-      eventsRef,
-      where('venue', '==', doc(this.firestore, venuePath)),
+    return this.repo.getEvents([
+      where('venue', '==', doc(this.repo.firestore, venuePath)),
       orderBy('start', 'asc')
-    );
-
-    return collectionData<any>(eventsQuery, {idField: 'id'}).pipe(
-      map(events => events.map(event => ChurchEventDto.fromFirestore(event, event.id)))
-    );
+    ]);
   }
 
   getEventsByType(type: string): Observable<ChurchEvent[]> {
-    const eventsRef = collection(this.firestore, 'Events');
-
-    const eventsQuery = query(
-      eventsRef,
+    return this.repo.getEvents([
       where('type', '==', type),
       orderBy('start', 'asc')
-    );
-
-    return collectionData<any>(eventsQuery, {idField: 'id'}).pipe(
-      map(events => events.map(event => ChurchEventDto.fromFirestore(event, event.id)))
-    );
+    ]);
   }
-
 }
+
