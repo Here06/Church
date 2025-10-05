@@ -1,5 +1,4 @@
-import {DocumentReference} from '@angular/fire/compat/firestore';
-import {doc, Firestore, getDoc, Timestamp} from "@angular/fire/firestore";
+import {doc, DocumentReference, Firestore, getDoc, Timestamp} from "@angular/fire/firestore";
 import {ChurchEvent} from "../components/calendar/i-event";
 import {Branch} from "../components/branch/i-branch";
 

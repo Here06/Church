@@ -3,7 +3,7 @@
   <div class="event-sidebar">
     <h3>Upcoming Events</h3>
     <ul>
-      @for (event of events; track event) {
+      @for (event of events; track event.start + event.title) {
         <li
           (mouseover)="hoveredEvent = event"
           (mouseleave)="hoveredEvent = null">
@@ -13,13 +13,13 @@
               <p><strong>{{ event.title }}</strong></p>
               <p>{{ event.meta?.description }}</p>
               <p><em>{{ event.start | date: 'mediumDate' }}</em></p>
+              <p><small>Venue: {{ event.meta?.venue }}</small></p>
             </div>
           }
         </li>
       }
     </ul>
   </div>
-
 
 
   <div class="calendar-view">
@@ -36,7 +36,5 @@
       [events]="events">
     </mwl-calendar-month-view>
   </div>
-
-
-
+  
 </div>
