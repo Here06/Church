@@ -2,8 +2,10 @@ import {Component, inject, OnInit} from '@angular/core';
 import {CalendarEvent, CalendarModule} from 'angular-calendar';
 import {CommonModule} from '@angular/common';
 import {EventsService} from "../../services/events-service";
-import {SidebarComponent} from "../../events-sidebar/sidebar.component";
+import {SidebarComponent} from "../events-sidebar/sidebar.component";
 import {addMonths, subMonths} from "date-fns";
+import {eventTypeColorMap} from "../../../design/event-type-colours";
+import {mapToEventType} from "./event-type-enum";
 
 @Component({
   selector: 'app-calendar',
@@ -26,16 +28,21 @@ export class CalendarComponent implements OnInit {
 
   loadUpComingEvents(): void {
     this.eventsService.getUpcomingEvents().subscribe(churchEvents => {
-      this.allEvents = churchEvents.map(event => ({
-        id: event.id,
-        start: event.start,
-        title: event.name,
-        color: {primary: '#1abc9c', secondary: '#d1f2eb'},
-        meta: {
-          description: event.type ?? 'No description',
-          venue: event.place,
-        }
-      }));
+      this.allEvents = churchEvents.map(event => {
+        const eventType = mapToEventType(event.type ?? '');
+        const color = eventType ? eventTypeColorMap[eventType] : {primary: '#7f8c8d', secondary: '#ecf0f1'};
+        return {
+          id: event.id,
+          start: event.start,
+          title: event.name,
+          color,
+          meta: {
+            description: eventType ?? 'No description',
+            venue: event.place,
+          }
+        };
+      });
+
       this.filterEventsForMonth(this.viewDate);
     });
   }
