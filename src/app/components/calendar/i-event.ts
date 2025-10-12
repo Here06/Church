@@ -1,3 +1,5 @@
+import {EventType} from "./event-type-enum";
+
 export interface ChurchEvent {
   id: string;
   name: string;
@@ -5,5 +7,5 @@ export interface ChurchEvent {
   end?: Date;
   churchVenue?: string;
   place?: string;
-  type?: string;
+  type?: EventType;
 }

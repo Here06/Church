@@ -1,13 +1,14 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {CalendarEvent, CalendarModule} from 'angular-calendar';
 import {CommonModule} from '@angular/common';
-import {addMonths, subMonths} from 'date-fns';
 import {EventsService} from "../../services/events-service";
+import {SidebarComponent} from "../../events-sidebar/sidebar.component";
+import {addMonths, subMonths} from "date-fns";
 
 @Component({
   selector: 'app-calendar',
   standalone: true,
-  imports: [CommonModule, CalendarModule],
+  imports: [CommonModule, CalendarModule, SidebarComponent],
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.scss']
 })
@@ -15,41 +16,69 @@ export class CalendarComponent implements OnInit {
   private readonly eventsService = inject(EventsService);
 
   viewDate: Date = new Date();
-  hoveredEvent: CalendarEvent | null = null;
+  allEvents: CalendarEvent[] = [];
   events: CalendarEvent[] = [];
 
+
   ngOnInit(): void {
-    this.loadEventsForMonth(this.viewDate);
+    this.loadUpComingEvents();
   }
 
-  loadEventsForMonth(date: Date): void {
-    const year = date.getFullYear();
-    const month = date.getMonth() + 1; // Month enum is 1-based
-    this.eventsService.getEventsByMonth(year, month).subscribe(churchEvents => {
-      this.events = churchEvents.map(e => ({
-        start: e.start,
-        title: e.name,
+  loadUpComingEvents(): void {
+    this.eventsService.getUpcomingEvents().subscribe(churchEvents => {
+      this.allEvents = churchEvents.map(event => ({
+        id: event.id,
+        start: event.start,
+        title: event.name,
         color: {primary: '#1abc9c', secondary: '#d1f2eb'},
         meta: {
-          description: e.type ?? 'No description',
-          venue: e.place ?? 'Unknown'
+          description: event.type ?? 'No description',
+          venue: event.place,
         }
       }));
+      this.filterEventsForMonth(this.viewDate);
     });
+  }
+
+
+  filterEventsForMonth(date: Date): void {
+    const month = date.getMonth();
+    const year = date.getFullYear();
+
+    this.events = this.allEvents.filter(e => {
+      const eventDate = new Date(e.start);
+      return eventDate.getMonth() === month && eventDate.getFullYear() === year;
+    });
+  }
+
+
+  scrollToCalendarDate(date: Date) {
+    this.viewDate = new Date(date);
+    this.filterEventsForMonth(this.viewDate);
+  }
+
+  onCalendarEventClick(event: CalendarEvent) {
+    const el = document.getElementById('event-' + event.id);
+    if (el) {
+      el.scrollIntoView({behavior: 'smooth', block: 'center'});
+      el.classList.add('highlight');
+      setTimeout(() => el.classList.remove('highlight'), 2000);
+    }
   }
 
   goToPreviousMonth() {
     this.viewDate = subMonths(this.viewDate, 1);
-    this.loadEventsForMonth(this.viewDate);
+    this.filterEventsForMonth(this.viewDate);
   }
 
   goToNextMonth() {
     this.viewDate = addMonths(this.viewDate, 1);
-    this.loadEventsForMonth(this.viewDate);
+    this.filterEventsForMonth(this.viewDate);
   }
 
   goToToday() {
     this.viewDate = new Date();
-    this.loadEventsForMonth(this.viewDate);
+    this.filterEventsForMonth(this.viewDate);
   }
+
 }

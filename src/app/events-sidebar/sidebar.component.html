@@ -1,0 +1,14 @@
+<ul class="event-list">
+  @for (event of events; track event.id) {
+    <li
+      class="event-tile"
+      [attr.id]="'event-' + event.id"
+      (click)="onEventClick(event)">
+
+      <h4>{{ event.title }}</h4>
+      <p><strong>Type:</strong> {{ event.meta?.description }}</p>
+      <p><strong>Date:</strong> {{ event.start | date: 'mediumDate' }} {{ event.start | date: 'shortTime' }}</p>
+      <p><strong>Place:</strong> {{ event.meta?.venue }}</p>
+    </li>
+  }
+</ul>

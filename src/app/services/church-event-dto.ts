@@ -1,6 +1,7 @@
 import {doc, DocumentReference, Firestore, getDoc, Timestamp} from "@angular/fire/firestore";
 import {ChurchEvent} from "../components/calendar/i-event";
 import {Branch} from "../components/branch/i-branch";
+import {mapToEventType} from "../components/calendar/event-type-enum";
 
 export class ChurchEventDto {
   static fromFirestore(data: any, id: string): ChurchEvent {
@@ -10,7 +11,7 @@ export class ChurchEventDto {
       start: (data.start as Timestamp).toDate(),
       end: data.end ? (data.end as Timestamp).toDate() : undefined,
       churchVenue: data.venue ? (data.venue as DocumentReference).path : undefined,
-      type: data.type,
+      type: mapToEventType(data.type),
       place: data.place ?? 'TBD',
     };
   }
