@@ -7,7 +7,7 @@ import {inject, Injectable, Injector, runInInjectionContext} from '@angular/core
 @Injectable({providedIn: 'root'})
 export class EventsRepository {
   private readonly firestore = inject(Firestore);
-  private readonly injector = inject(Injector); // or EnvironmentInjector if preferred
+  private readonly injector = inject(Injector);
   private readonly eventsRef = collection(this.firestore, 'Events');
 
   getEvents(queryConstraints: QueryConstraint[]): Observable<ChurchEvent[]> {
