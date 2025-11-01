@@ -67,7 +67,7 @@ export class CalendarComponent implements OnInit {
   onCalendarEventClick(event: CalendarEvent) {
     const el = document.getElementById('event-' + event.id);
     if (el) {
-      el.scrollIntoView({behavior: 'smooth', block: 'center'});
+      el.scrollIntoView({behavior: 'smooth', block: 'start'});
       el.classList.add('highlight');
       setTimeout(() => el.classList.remove('highlight'), 2000);
     }
