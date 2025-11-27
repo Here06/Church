@@ -1,5 +1,7 @@
 <div class="branch-card" (click)="navigateToDetails()">
-  <img [src]="image || 'assets/logo.jpg'" alt="Branch Image"/>
-  <h4 class="title">{{ name }}</h4>
-  <p>{{ district }}</p>
+  <img [src]="image || 'assets/logo.png'" alt="Branch Image"/>
+  <h4 class="title">{{ branch.name }}</h4>
+  <p>{{ branch.region }}</p>
+  <p>{{branch.pastor?.title }} {{branch.pastor?.initials}} {{branch.pastor?.lastname}}</p>
+
 </div>

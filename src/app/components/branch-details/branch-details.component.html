@@ -1,10 +1,70 @@
-<img [src]="imagePath" alt="{{ branchName }} image"/>
-<div class="branch-details">
+<div class="relative w-full h-96 overflow-hidden rounded-lg">
+  <img [src]="imagePath || 'assets/picture.jpg'" alt="{{ branchName }} image"/>
+  <div class="absolute insert-0 bg-black bg-opacity-100"></div>
+  <h2 class="absolute bottom-0 left-0 p-2 font-bold text-white text-4xl">
+    {{ branchName }}
+  </h2>
+</div>
+<app-pastor-details
+  [imagePath]="imagePath"
+  [title]="pastor?.title"
+  [initials]="pastor?.initials"
+  [lastname]="pastor?.lastname"
+></app-pastor-details>
+<!-- branch details -->
+<div class="the-details bg-[#3c834a] flex flex-col items-center justify-center rounded-lg p-8 text-white">
+
+<!--  -->
+  <div class="service-details flex flex-col items-center justify-center">
+    <h1>Service details</h1>
+    <p> TBA</p>
+    
+    <div class="location-box bg-[#509661] p-8 rounded-lg">
+      <h1>Find us</h1>
+      <div class="location-hyper flex items-center gap-2">
+        <span class="material-icons text-blue-600">location_on</span>
+        <p>
+          <a [href]="address?.googleLink" target="_blank">{{ address?.googleLink }}</a>
+        </p>
+      </div>
+    </div>
+  </div>
+  <!--  -->
+  <div class="contact-details flex justify-between m-8 p-4">
+    <div class="email-box bg-[#509661] p-8 m-4 rounded-lg">
+      <p>Email us</p>
+      <div class="flex items-center gap-2">
+        <span class="material-icons text-blue-600">email</span>
+        <p class="email-address">{{contact?.email}}</p>
+      </div>
+
+    </div>
+
+
+
+    <div class="phone-box bg-[#509661] p-8 m-4 rounded-lg">
+      <p>contact us</p>
+      <div class="flex items-center gap-2">
+        <span class="material-icons text-blue-600">phone</span>
+          <p class="phone-number">{{contact?.phone}}</p>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+
+<!-- <div class="branch-details">
   <h2>{{ branchName }}</h2>
-  <p>Service:{{ service }}</p>
+  <p>Service:{{ district }}</p>
   <p>
     Address: <a [href]="address?.googleLink" target="_blank">{{ address?.googleLink }}</a>
   </p>
-  <p>Pastor: {{ pastor }}</p>
+  <p>Pastor: {{ pastorName }}</p>
   <p>Contact:{{ contact?.phone }}, {{ contact?.email }}</p>
-</div>
+</div> -->

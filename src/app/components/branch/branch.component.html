@@ -1,10 +1,28 @@
-<div class="content">
+<!-- <div class="content">
+    <p>{{branchData.pastor?.title}}</p>
+
   <app-branch-details
     [branchName]="branchData.branchName"
+    [district]="branchData.district"
     [imagePath]="branchData.imagePath"
     [address]="{
     googleLink: branchData.address
-    }">
+    }"
+    [pastorName]="branchData.pastorName"
+    [pastor]="branchData.pastor"
+    >
   </app-branch-details>
+</div> -->
 
+<div class="content">
+  @if (branch) {
+
+    <app-branch-details
+      [branchName]="branch.name"
+      [district]="branch.region"
+      [pastor]="branch.pastor">
+    </app-branch-details>
+  } @else {
+    <p>...</p>
+  }
 </div>
