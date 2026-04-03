@@ -1,25 +1,8 @@
 <div class="calendar-container">
-
-  <div class="event-sidebar">
-    <h3>Upcoming Events</h3>
-    <ul>
-      @for (event of events; track event) {
-        <li
-          (mouseover)="hoveredEvent = event"
-          (mouseleave)="hoveredEvent = null">
-          {{ event.title }}
-          @if (hoveredEvent === event) {
-            <div class="event-description">
-              <p><strong>{{ event.title }}</strong></p>
-              <p>{{ event.meta?.description }}</p>
-              <p><em>{{ event.start | date: 'mediumDate' }}</em></p>
-            </div>
-          }
-        </li>
-      }
-    </ul>
-  </div>
-
+  <app-sidebar
+    [events]="allEvents"
+    (eventSelected)="scrollToCalendarDate($event.start)">
+  </app-sidebar>
 
 
   <div class="calendar-view">
@@ -31,12 +14,14 @@
       <button (click)="goToToday()">Today</button>
       <button (click)="goToNextMonth()">Next ▶</button>
     </div>
-    <mwl-calendar-month-view
-      [viewDate]="viewDate"
-      [events]="events">
-    </mwl-calendar-month-view>
+
+    <div class="calendar-view">
+      <mwl-calendar-month-view
+        [viewDate]="viewDate"
+        [events]="events"
+        (eventClicked)="onCalendarEventClick($event.event)">
+      </mwl-calendar-month-view>
+    </div>
   </div>
-
-
 
 </div>
