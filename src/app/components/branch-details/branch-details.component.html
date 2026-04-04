@@ -1,10 +1,8 @@
-<img [src]="imagePath" alt="{{ branchName }} image"/>
 <div class="branch-details">
   <h2>{{ branchName }}</h2>
-  <p>Service:{{ service }}</p>
+  <p>Service: {{ service }}</p>
   <p>
     Address: <a [href]="address?.googleLink" target="_blank">{{ address?.googleLink }}</a>
   </p>
-  <p>Pastor: {{ pastor }}</p>
-  <p>Contact:{{ contact?.phone }}, {{ contact?.email }}</p>
+  <p>Pastor: {{ pastor?.initials }} {{ pastor?.lastName }}</p>
 </div>

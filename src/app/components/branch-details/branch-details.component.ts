@@ -10,7 +10,7 @@ import {Component, Input} from '@angular/core';
 export class BranchDetailsComponent {
   @Input() imagePath?: string;
   @Input() branchName?: string;
-  @Input() pastor?: string;
+  @Input() pastor?: { title: string; lastName: string; initials: string };
   @Input() address?: { googleLink?: string };
   @Input() service?: string;
   @Input() contact?: { phone?: string, email?: string };

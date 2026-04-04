@@ -1,14 +1,32 @@
 import {Injectable} from '@angular/core';
-import {collection, collectionData, Firestore} from '@angular/fire/firestore';
+import {orderBy, where} from '@angular/fire/firestore';
 import {Observable} from 'rxjs';
+import {BranchesRepository} from '../repository/branches-repository';
+import {Branch} from "../components/branch/i-branch";
+
+
+export interface IBranchesService {
+  getAllBranches(): Observable<Branch[]>;
+
+  getBranchesByRegion(region: string): Observable<Branch[]>;
+
+  getBranchById(id: string): Observable<Branch>;
+}
 
 @Injectable({providedIn: 'root'})
-export class BranchService {
-  constructor(private firestore: Firestore) {
+export class BranchesService implements IBranchesService {
+  constructor(private readonly repo: BranchesRepository) {
   }
 
-  getBranches(): Observable<any[]> {
-    const branchesRef = collection(this.firestore, 'Branches');
-    return collectionData(branchesRef, {idField: 'id'});
+  getAllBranches(): Observable<Branch[]> {
+    return this.repo.getBranches([orderBy('name', 'asc')]);
+  }
+
+  getBranchesByRegion(region: string): Observable<Branch[]> {
+    return this.repo.getBranches([where('region', '==', region), orderBy('name', 'asc')]);
+  }
+
+  getBranchById(id: string): Observable<Branch> {
+    return this.repo.getBranchById(id);
   }
 }

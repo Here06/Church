@@ -1,34 +1,67 @@
+@use '../design/colors' as *;
+
+.cal-header-cell {
+  padding: 0.5rem 0;
+}
+
 .calendar-container {
   display: flex;
   gap: 40px;
   padding: 20px;
+  background: $background;
+  color: $text;
+
+  @media (max-width: 900px) {
+    flex-direction: column;
+    gap: 20px;
+  }
 }
 
 .calendar-view {
   flex: 2;
   min-width: 600px;
+
+  @media (max-width: 900px) {
+    min-width: auto;
+    width: 100%;
+  }
 }
 
 .calendar-wrapper {
   width: 100%;
   min-width: 600px;
+
+  @media (max-width: 900px) {
+    min-width: auto;
+  }
 }
 
 .calendar-nav {
   display: flex;
   gap: 10px;
   margin-bottom: 20px;
+  flex-wrap: wrap;
 
   button {
     padding: 8px 16px;
-    background-color: #3498db;
+    background-color: $primary;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s;
 
     &:hover {
-      background-color: #2980b9;
+      background-color: $primary-dark;
+    }
+
+    &:active {
+      background-color: $primary-variant;
+    }
+
+    .btn-icon {
+      display: none;
     }
   }
 }
@@ -38,7 +71,36 @@
 
   h2 {
     font-size: 1.8rem;
-    color: #2c3e50;
+    color: $secondary;
+    font-weight: 700;
   }
 }
+
+
+.day-long, .day-short {
+  font-weight: 600;
+  color: $primary;
+  text-align: center;
+}
+
+.day-long {
+  display: inline;
+}
+
+.day-short {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .day-long {
+    display: none;
+  }
+  .day-short {
+    display: inline;
+  }
+}
+
+
+
+
 

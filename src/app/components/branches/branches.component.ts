@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
-import {BranchService} from "../../services/branch-services";
 import {AsyncPipe} from "@angular/common";
 import {BranchCardComponent} from "../branch-card/branch-card.component";
+import {BranchesService} from "../../services/branch-services";
 
 
 @Component({
@@ -16,9 +16,9 @@ import {BranchCardComponent} from "../branch-card/branch-card.component";
 })
 
 export class BranchesComponent {
-  branchList$ = this.branchService.getBranches();
+  branchList$ = this.branchService.getAllBranches();
 
-  constructor(private branchService: BranchService) {
+  constructor(private branchService: BranchesService) {
   }
 }
 

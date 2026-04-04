@@ -1,10 +1,11 @@
 <div class="content">
-  <app-branch-details
-    [branchName]="branchData.branchName"
-    [imagePath]="branchData.imagePath"
-    [address]="{
-    googleLink: branchData.address
-    }">
-  </app-branch-details>
+  <img [src]="branchData.image || 'assets/logo.png'" alt="{{ branchData.name }} image"/>
 
+  <app-branch-details
+    [branchName]="branchData.name"
+    [pastor]="branchData.pastor"
+    [service]="branchData.service"
+    [contact]="branchData.contact"
+    [address]="branchData.address">
+  </app-branch-details>
 </div>
