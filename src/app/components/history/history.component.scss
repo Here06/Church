@@ -1,0 +1,52 @@
+.timeline {
+  position: relative;
+  max-width: 900px;
+  margin: auto;
+  padding: 2rem 0;
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    background-color: #ccc;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -3px;
+  }
+}
+
+.timeline-item {
+  padding: 1rem;
+  position: relative;
+  width: 50%;
+
+  &.left {
+    left: 0;
+  }
+
+  &.right {
+    left: 50%;
+  }
+
+  .content {
+    background: #fff;
+    padding: 1rem;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+}
+
+@media (max-width: 768px) {
+  .timeline::after {
+    left: 20px;
+  }
+  .timeline-item {
+    width: 100%;
+    padding-left: 40px;
+
+    &.right {
+      left: 0;
+    }
+  }
+}
