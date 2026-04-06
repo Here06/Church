@@ -1,21 +1,21 @@
-<div class="calendar-container">
+<div class="calendar-layout">
   <app-sidebar
     [events]="allEvents"
     (eventSelected)="scrollToCalendarDate($event.start)">
   </app-sidebar>
 
-
-  <div class="calendar-view">
-    <div class="calendar-header">
+  <div class="calendar-main">
+    <div class="calendar-title">
       <h2>{{ viewDate | date: 'MMMM yyyy' }}</h2>
     </div>
-    <div class="calendar-nav">
+
+    <div class="calendar-controls">
       <button (click)="goToPreviousMonth()">◀ Previous</button>
       <button (click)="goToToday()">Today</button>
       <button (click)="goToNextMonth()">Next ▶</button>
     </div>
 
-    <div class="calendar-view">
+    <div class="calendar-grid">
       <mwl-calendar-month-view
         [viewDate]="viewDate"
         [events]="events"
@@ -23,5 +23,4 @@
       </mwl-calendar-month-view>
     </div>
   </div>
-
 </div>

@@ -1,6 +1,9 @@
 <div class="timeline">
   @for (event of timeline; track event.year; let i = $index) {
-    <div class="timeline-item" [class.left]="i % 2 === 0" [class.right]="i % 2 !== 0">
+    <div class="timeline-item"
+         [class.left]="i % 2 === 0"
+         [class.right]="i % 2 !== 0"
+         data-aos="fade-up">
       <div class="content">
         <h3>{{ event.year }}</h3>
         <h4>{{ event.title }}</h4>

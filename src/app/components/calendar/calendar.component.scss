@@ -1,42 +1,41 @@
 @use '../design/colors' as *;
 
-.cal-header-cell {
-  padding: 0.5rem 0;
-}
-
-.calendar-container {
+.calendar-layout {
   display: flex;
   gap: 40px;
   padding: 20px;
+  max-width: 100vw;
   background: $background;
   color: $text;
 
   @media (max-width: 900px) {
     flex-direction: column;
-    gap: 20px;
+    padding: 10px;
   }
 }
 
-.calendar-view {
+.calendar-main {
   flex: 2;
-  min-width: 600px;
-
-  @media (max-width: 900px) {
-    min-width: auto;
-    width: 100%;
-  }
-}
-
-.calendar-wrapper {
+  min-width: 0;
   width: 100%;
-  min-width: 600px;
+}
 
-  @media (max-width: 900px) {
-    min-width: auto;
+.calendar-grid {
+  width: 100%;
+  min-width: 0;
+}
+
+.calendar-title {
+  margin-bottom: 10px;
+
+  h2 {
+    font-size: 1.8rem;
+    color: $secondary;
+    font-weight: 700;
   }
 }
 
-.calendar-nav {
+.calendar-controls {
   display: flex;
   gap: 10px;
   margin-bottom: 20px;
@@ -59,48 +58,5 @@
     &:active {
       background-color: $primary-variant;
     }
-
-    .btn-icon {
-      display: none;
-    }
   }
 }
-
-.calendar-header {
-  margin-bottom: 10px;
-
-  h2 {
-    font-size: 1.8rem;
-    color: $secondary;
-    font-weight: 700;
-  }
-}
-
-
-.day-long, .day-short {
-  font-weight: 600;
-  color: $primary;
-  text-align: center;
-}
-
-.day-long {
-  display: inline;
-}
-
-.day-short {
-  display: none;
-}
-
-@media (max-width: 900px) {
-  .day-long {
-    display: none;
-  }
-  .day-short {
-    display: inline;
-  }
-}
-
-
-
-
-
