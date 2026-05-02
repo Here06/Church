@@ -1,83 +1,188 @@
 @use '../design/colors' as *;
 
+.menu-toggle {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 22px;
+  cursor: pointer;
+  z-index: 1100;
+  margin-left: auto;
+
+  span {
+    height: 3px;
+    width: 100%;
+    background: $primary;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+
+  &.open span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  &.open span:nth-child(2) {
+    opacity: 0;
+  }
+
+  &.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+  }
+}
+
+.nav-list {
+  position: absolute;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  background: rgba($primary, 0.95);
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+  transition: transform 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .nav-list {
+    display: none; // hide menu until opened
+  }
+
+  .nav-list.open {
+    display: flex; // show when isMenuOpen is true
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background: rgba($primary, 0.95);
+    padding: 20px;
+  }
+
+  .menu-toggle {
+    display: flex; // show burger on mobile
+  }
+}
+
 .top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; // brand left, toggle right
+  padding: 10px 20px;
   background-color: $primary;
   color: white;
-  padding: 10px 20px;
+}
 
-  .nav-list {
+.brand {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: white;
+}
+
+.menu-toggle {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 22px;
+  cursor: pointer;
+  z-index: 1100;
+
+  span {
+    height: 3px;
+    width: 100%;
+    background: white; // match brand color
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+
+  &.open span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  &.open span:nth-child(2) {
+    opacity: 0;
+  }
+
+  &.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+  }
+}
+
+.nav-list {
+  position: fixed; // overlay the whole viewport
+  top: 0; // start at the very top
+  left: 0;
+  width: 100vw; // full screen width
+  height: 100vh; // full screen height
+  background: rgba($primary, 0.95);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 80px 20px 20px; // leave space for the brand + toggle at the top
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1000;
+
+  &.open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  li {
+    width: 100%;
+    padding: 12px;
+    color: white;
+    font-weight: 500;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  .about-us .submenu {
+    margin-top: 8px;
     display: flex;
-    gap: 20px;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    align-items: center;
+    flex-direction: column;
+    gap: 6px;
+    background-color: rgba($primary-dark, 0.9);
+    padding: 10px;
+    border-radius: 4px;
 
     li {
-      position: relative;
-      cursor: pointer;
-
-      &.active {
-        border-bottom: 2px solid #ecf0f1;
-      }
+      padding: 8px;
 
       &:hover {
-        color: #ecdbff;
-      }
-
-      &.about-us {
-        span {
-          display: inline-block;
-        }
-
-        .submenu {
-          position: absolute;
-          top: 100%;
-          left: 0;
-          display: flex;
-          flex-direction: column;
-          gap: 10px;
-          background-color: #34495e;
-          padding: 10px;
-          list-style: none;
-          white-space: nowrap;
-          display: none;
-
-        }
-
-        &:hover .submenu {
-          display: flex;
-        }
-
-        .submenu li {
-          padding: 5px 10px;
-
-          &:hover {
-            background-color: #3d566e;
-          }
-        }
+        background-color: rgba(255, 255, 255, 0.1);
       }
     }
   }
 }
 
-.home-logo {
+.top-bar {
   display: flex;
   align-items: center;
-  gap: 12px;
-  cursor: pointer;
-
-  img {
-    height: 50px;
-    width: auto;
-    border-radius: 4px;
-  }
-
-  .site-title {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: white;
-  }
-
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: $primary;
+  color: white;
+  position: fixed; // keep brand + toggle visible
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1101;
 }
+
+.brand {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: white;
+}
+
 

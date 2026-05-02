@@ -1,19 +1,25 @@
 <nav class="top-bar">
-  <ul class="nav-list">
-    <li routerLink="/"
-        class="home-logo">
-      <img src="assets/logo.png" alt="Logo"/>
-    </li>
-    <li routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</li>
-    <li routerLink="/calendar" routerLinkActive="active">Calendar</li>
-    <li routerLink="/branches" routerLinkActive="active">Branches</li>
-    <li class="about-us">
-      <span>About Us</span>
-      <ul class="submenu">
-        <li routerLink="/mission">Our Mission</li>
-        <li routerLink="/team">Our Leadership</li>
-        <li routerLink="/contact">Our Story</li>
-      </ul>
-    </li>
-  </ul>
+  <div class="brand">NCCC</div>
+
+  <div class="menu-toggle" (click)="toggleMenu()" [class.open]="isMenuOpen">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  @if (isMenuOpen) {
+    <ul class="nav-list open">
+      <li routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</li>
+      <li routerLink="/calendar" routerLinkActive="active">Calendar</li>
+      <li routerLink="/branches" routerLinkActive="active">Branches</li>
+      <li class="about-us">
+        <span>About Us</span>
+        <ul class="submenu">
+          <li routerLink="/mission">Our Mission</li>
+          <li routerLink="/team">Our Leadership</li>
+          <li routerLink="/contact">Our Story</li>
+        </ul>
+      </li>
+    </ul>
+  }
 </nav>
