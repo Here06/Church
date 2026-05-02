@@ -17,6 +17,7 @@ import {BranchesService} from "../../services/branch-services";
 
 export class BranchesComponent {
   branchList$ = this.branchService.getAllBranches();
+  skeletons = Array(4);
 
   constructor(private branchService: BranchesService) {
   }

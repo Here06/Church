@@ -10,6 +10,7 @@ import {Component, Input} from "@angular/core";
 export class BranchCardComponent {
   @Input() id!: string;
   @Input() image?: string;
+  @Input() loading = false;
 
   constructor(private router: Router) {
   }
