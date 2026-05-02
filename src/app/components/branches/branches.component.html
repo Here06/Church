@@ -1,11 +1,9 @@
 <div class="branch-grid">
   @if (!(branchList$ | async)) {
-    <!-- Skeleton cards while loading -->
     @for (skeleton of skeletons; track $index) {
       <app-branch-card [loading]="true"></app-branch-card>
     }
   } @else {
-    <!-- Actual branch cards once data arrives -->
     @for (branch of branchList$ | async; track branch.id) {
       <app-branch-card
         [id]="branch.id"
