@@ -4,8 +4,8 @@
       <h4 class="title">{{ id }}</h4>
       <img [src]="image || 'assets/logo.png'" alt="Branch Image"/>
     } @else {
-      <div class="skeleton-image"></div>
       <div class="skeleton-text"></div>
+      <img src="assets/logo.png" alt="Loading Logo" class="skeleton-logo"/>
     }
   </div>
 </div>
