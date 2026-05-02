@@ -2,14 +2,14 @@ import {Component} from '@angular/core';
 import {AsyncPipe} from "@angular/common";
 import {BranchCardComponent} from "../branch-card/branch-card.component";
 import {BranchesService} from "../../services/branch-services";
-import {delay} from "rxjs";
+import {delay, startWith} from "rxjs";
 
 
 @Component({
   selector: 'app-branches',
   imports: [
     AsyncPipe,
-    BranchCardComponent
+    BranchCardComponent,
   ],
   templateUrl: './branches.component.html',
   standalone: true,
@@ -18,9 +18,10 @@ import {delay} from "rxjs";
 
 export class BranchesComponent {
   branchList$ = this.branchService.getAllBranches().pipe(
+    startWith([]),
     delay(5000) ///Todo: Remove
   );
-  
+
   skeletons = Array(4);
 
   constructor(private branchService: BranchesService) {
