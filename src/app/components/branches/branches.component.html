@@ -6,15 +6,14 @@
       <app-branch-card [loading]="true"></app-branch-card>
     }
   } @else {
-    <div class="cards visible">
-      @for (branch of branches; track branch.id; let i = $index) {
-        <app-branch-card
-          [id]="branch.id"
-          [image]="branch.image"
-          class="card-animate"
-          [style.animation-delay.ms]="i * 200">
-        </app-branch-card>
-      }
-    </div>
+    @for (branch of branches; track branch.id; let i = $index) {
+      <app-branch-card
+        [id]="branch.id"
+        [image]="branch.image"
+        class="card-animate"
+        [style.animation-delay.ms]="i * 200">
+      </app-branch-card>
+    }
   }
 </div>
+

@@ -6,49 +6,55 @@
   gap: 24px;
   padding: 20px;
   margin: auto;
+}
 
-  .card-animate {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeSlideIn 0.6s ease forwards;
+.card-animate {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeSlideIn 0.6s ease forwards;
+}
+
+@keyframes fadeSlideIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
+}
 
-  @keyframes fadeSlideIn {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @media (max-width: 768px) {
+@media (max-width: 768px) {
+  .branch-grid {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 16px;
     padding: 16px;
   }
+}
 
-  @media (max-width: 480px) {
-    grid-template-columns: 1fr; // single column on very small screens
+@media (max-width: 480px) {
+  .branch-grid {
+    grid-template-columns: 1fr;
     gap: 12px;
     padding: 12px;
   }
-
-  .skeletons {
-    opacity: 1;
-    transition: opacity 0.5s ease;
-  }
-
-  .skeletons.hidden {
-    opacity: 0;
-    pointer-events: none;
-  }
-
-  .cards {
-    opacity: 0;
-    transition: opacity 0.5s ease;
-  }
-
-  .cards.visible {
-    opacity: 1;
-  }
-
 }
+
+
+.skeletons {
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.skeletons.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cards {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.cards.visible {
+  opacity: 1;
+}
+
+
