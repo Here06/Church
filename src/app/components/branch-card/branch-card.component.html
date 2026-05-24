@@ -1,5 +1,11 @@
-<div class="branch-card" (click)="navigateToDetails()">
-  <img [src]="image || 'assets/logo.png'" alt="Branch Image"/>
-  <h4 class="title">{{ name }}</h4>
-  <p>{{ district }}</p>
+<div class="branch-card" (click)="!loading && navigateToDetails()">
+  <div class="card-content">
+    @if (!loading) {
+      <h4 class="title">{{ id }}</h4>
+      <img [src]="image || 'assets/logo.png'" alt="Branch Image"/>
+    } @else {
+      <div class="skeleton-text"></div>
+      <img src="assets/logo.png" alt="Loading Logo" class="skeleton-logo"/>
+    }
+  </div>
 </div>

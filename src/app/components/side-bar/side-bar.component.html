@@ -1,21 +1,19 @@
 <nav class="top-bar">
-  <ul class="nav-list">
-    <li routerLink="/"
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: true }"
-        class="home-logo">
-      <span class="site-title">NCCCA</span>
-      <img src="assets/logo.png" alt="Logo" />
+  <a routerLink="/" class="brand-link" (click)="closeMenu()">
+    <img src="assets/logo.png" alt="NCCC Logo" class="brand"/>
+  </a>
+
+  <div class="menu-toggle" (click)="toggleMenu()" [class.open]="isMenuOpen">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <ul class="nav-list" [class.open]="isMenuOpen">
+    <li routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="closeMenu()">
+      Home
     </li>
-    <li routerLink="/calendar" routerLinkActive="active">Calendar</li>
-    <li routerLink="/branches" routerLinkActive="active">Branches</li>
-    <li class="about-us">
-      <span>About Us</span>
-      <ul class="submenu">
-        <li routerLink="/mission">Our Mission</li>
-        <li routerLink="/team">Our Leadership</li>
-        <li routerLink="/contact">Our Story</li>
-      </ul>
-    </li>
+    <li routerLink="/calendar" routerLinkActive="active" (click)="closeMenu()">Calendar</li>
+    <li routerLink="/branches" routerLinkActive="active" (click)="closeMenu()">Branches</li>
   </ul>
 </nav>

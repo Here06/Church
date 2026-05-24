@@ -1,10 +1,35 @@
-<img [src]="imagePath" alt="{{ branchName }} image"/>
-<div class="branch-details">
-  <h2>{{ branchName }}</h2>
-  <p>Service:{{ service }}</p>
-  <p>
-    Address: <a [href]="address?.googleLink" target="_blank">{{ address?.googleLink }}</a>
-  </p>
-  <p>Pastor: {{ pastor }}</p>
-  <p>Contact:{{ contact?.phone }}, {{ contact?.email }}</p>
+<div class="branch-page">
+  @if (branch$ | async; as branch) {
+    <div class="branch-background"
+         [style.background-image]="'url(' + (branch.imagePath || 'assets/logo.png') + ')'">
+    </div>
+
+
+    <div class="branch-details">
+      <h2>{{ branch.name }}</h2>
+      <p>Service: {{ branch.service }}</p>
+      <p>
+        Address:
+        <a [href]="branch.address?.googleLink" target="_blank">
+          {{ branch.address?.googleLink }}
+        </a>
+      </p>
+      <p>Pastor: {{ branch.pastor?.initials }} {{ branch.pastor?.lastName }}</p>
+      @if (branch.contact?.phone) {
+        <p>Phone: {{ branch.contact!.phone }}</p>
+      }
+      @if (branch.contact?.email) {
+        <p>Email: {{ branch.contact!.email }}</p>
+      }
+    </div>
+  } @else {
+    <div class="branch-background skeleton"
+         style="background-image: url('assets/logo.png')">
+    </div>
+    <div class="branch-details-skeleton">
+      <div class="skeleton-title"></div>
+      <div class="skeleton-line"></div>
+      <div class="skeleton-line"></div>
+    </div>
+  }
 </div>

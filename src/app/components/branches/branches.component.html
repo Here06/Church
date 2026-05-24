@@ -1,10 +1,19 @@
+@let branches = branchList$ | async;
+
 <div class="branch-grid">
-  @for (branch of branchList$ | async; track branch.id) {
-    <app-branch-card
-      [title]="branch.title"
-      [image]="branch.image"
-      [address]="branch.address"
-      [name]="branch.name">
-    </app-branch-card>
+  @if (!branches || branches.length === 0) {
+    @for (skeleton of skeletons; track $index) {
+      <app-branch-card [loading]="true"></app-branch-card>
+    }
+  } @else {
+    @for (branch of branches; track branch.id; let i = $index) {
+      <app-branch-card
+        [id]="branch.id"
+        [image]="branch.image"
+        class="card-animate"
+        [style.animation-delay.ms]="i * 200">
+      </app-branch-card>
+    }
   }
 </div>
+
