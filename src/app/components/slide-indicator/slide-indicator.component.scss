@@ -1,0 +1,15 @@
+@use 'tokens' as *;
+
+.indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+}
+
+.current {
+  width: 20px;
+  height: 5px;
+  border-radius: 3px;
+  background: $gold;
+}

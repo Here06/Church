@@ -1,0 +1,26 @@
+// Shared design tokens for the NCCC site: colours, type and responsive breakpoints.
+// Usage in a component stylesheet: @use 'tokens' as *;
+@forward 'colors';
+
+$font-display: 'Crimson Text', Georgia, 'Times New Roman', serif;
+$font-body: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+$radius-sm: 4px;
+$radius-md: 6px;
+$radius-lg: 8px;
+
+// Mobile-first: base styles are mobile (<= 640px).
+$bp-tablet: 641px;
+$bp-desktop: 1024px;
+
+@mixin tablet {
+  @media (min-width: $bp-tablet) { @content; }
+}
+
+@mixin desktop {
+  @media (min-width: $bp-desktop) { @content; }
+}
+
+@mixin mobile-only {
+  @media (max-width: $bp-tablet - 1px) { @content; }
+}

@@ -1,23 +1,24 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {provideRouter} from '@angular/router';
+import {of} from 'rxjs';
+import {BranchDirectoryService} from '../../data/services/branch-directory.service';
 
-import { BranchesComponent } from './branches.component';
+import {BranchesComponent} from './branches.component';
 
 describe('BranchesComponent', () => {
-  let component: BranchesComponent;
   let fixture: ComponentFixture<BranchesComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BranchesComponent]
-    })
-    .compileComponents();
-    
+      imports: [BranchesComponent],
+      providers: [provideRouter([]), {provide: BranchDirectoryService, useValue: {getBranches: () => of([])}}]
+    }).compileComponents();
+
     fixture = TestBed.createComponent(BranchesComponent);
-    component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(fixture.componentInstance).toBeTruthy();
   });
 });

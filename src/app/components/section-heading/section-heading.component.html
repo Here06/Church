@@ -1,0 +1,7 @@
+<div class="heading">
+  <h2>{{ title() }}</h2>
+  <span class="rule" aria-hidden="true"></span>
+  @if (linkLabel()) {
+    <a [routerLink]="linkPath()">{{ linkLabel() }}@if (linkLabelExtra()) {<span class="extra"> {{ linkLabelExtra() }}</span>}&nbsp;&nbsp;›</a>
+  }
+</div>

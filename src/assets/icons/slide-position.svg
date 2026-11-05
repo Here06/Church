@@ -1,0 +1,12 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="46" height="5" viewBox="0 0 46 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Slide position" clip-path="url(#clip0_0_36)">
+<rect id="Current slide" width="22" height="5" rx="2.5" fill="#A7803F"/>
+<circle id="Slide" cx="31.5" cy="2.5" r="2.5" fill="#DCDCCF"/>
+<circle id="Slide_2" cx="43.5" cy="2.5" r="2.5" fill="#DCDCCF"/>
+</g>
+<defs>
+<clipPath id="clip0_0_36">
+<rect width="46" height="5" fill="white"/>
+</clipPath>
+</defs>
+</svg>

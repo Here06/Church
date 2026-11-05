@@ -1,3 +1,13 @@
-<div class="text-3xl font-bold underline">
-  <p>hello</p>
-</div>
+<app-hero
+  image="assets/images/hero-cross.jpg"
+  imageAlt="A cross on a hilltop at sunrise"
+  scriptureReference="Matthew 28:19–20"
+  scriptureText="“Go and make disciples of all nations...”" />
+
+<app-values-strip />
+
+@if (upcoming$ | async; as events) {
+  <app-event-list [events]="events" />
+}
+
+<app-about image="assets/images/about-community.jpg" />

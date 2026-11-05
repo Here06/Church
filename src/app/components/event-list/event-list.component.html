@@ -1,0 +1,15 @@
+<section class="events" aria-labelledby="events-title">
+  <app-section-heading title="Upcoming events" linkLabel="View All" linkLabelExtra="Events" linkPath="/calendar" />
+
+  @if (events().length) {
+    <ul #list class="list" (scroll)="onScroll(list)">
+      @for (event of events(); track $index) {
+        <li><app-event-card [event]="event" /></li>
+      }
+    </ul>
+
+    <app-slide-indicator class="dots" [count]="events().length" [active]="activeIndex()" />
+  } @else {
+    <p class="empty">No upcoming events right now. Please check back soon.</p>
+  }
+</section>

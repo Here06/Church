@@ -1,0 +1,9 @@
+<div class="indicator" role="presentation">
+  @for (slide of slides(); track slide) {
+    @if (slide === active()) {
+      <span class="current"></span>
+    } @else {
+      <img src="assets/icons/slide.svg" alt="" width="5" height="5">
+    }
+  }
+</div>

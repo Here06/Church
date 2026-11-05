@@ -1,0 +1,123 @@
+@use 'tokens' as *;
+
+:host {
+  display: block;
+}
+
+// Mobile: photo beside the details. Tablet and up: photo above the details.
+.card {
+  display: flex;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid $rule;
+  border-radius: $radius-lg;
+  background: $surface;
+}
+
+.photo {
+  position: relative;
+  flex: 0 0 110px;
+  height: 122px;
+
+  > img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.date {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 49px;
+  border-radius: $radius-sm;
+  background: $surface;
+}
+
+.month {
+  color: $gold;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.day {
+  color: $ink;
+  font: 400 26px/1 $font-display;
+}
+
+.info {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  gap: 9px;
+  min-width: 0;
+  padding: 14px;
+}
+
+h3 {
+  margin: 0;
+  color: $ink;
+  font: 400 21px/1.15 $font-display;
+}
+
+p {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  color: $ink-muted;
+  font-size: 11px;
+}
+
+@include tablet {
+  .card {
+    flex-direction: column;
+  }
+
+  .photo {
+    flex: none;
+    height: 155px;
+  }
+
+  .date {
+    top: 16px;
+    left: 16px;
+    width: 50px;
+    height: 57px;
+  }
+
+  .day {
+    font-size: 30px;
+  }
+
+  .info {
+    flex: none;
+    gap: 10px;
+    padding: 22px;
+  }
+
+  h3 {
+    font-size: 22px;
+  }
+
+  p {
+    font-size: 12px;
+  }
+}
+
+@include desktop {
+  h3 {
+    font-size: 28px;
+  }
+
+  p {
+    font-size: 13px;
+  }
+}

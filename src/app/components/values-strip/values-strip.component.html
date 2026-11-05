@@ -1,0 +1,7 @@
+<section class="strip" aria-label="Life in faith">
+  <ul>
+    @for (value of values(); track value.label) {
+      <li><app-value-item [value]="value" /></li>
+    }
+  </ul>
+</section>
