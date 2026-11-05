@@ -1,0 +1,57 @@
+@use 'tokens' as *;
+
+.heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+h2 {
+  margin: 0;
+  font: 400 30px/1.1 $font-display;
+  color: $ink;
+  white-space: nowrap;
+}
+
+.rule {
+  flex: 1 1 0;
+  min-width: 1px;
+  height: 1px;
+  background: $rule;
+}
+
+a {
+  color: $ink;
+  font-size: 11px;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+
+  &:hover {
+    color: $gold;
+  }
+}
+
+.extra {
+  display: none;
+}
+
+@include tablet {
+  .extra {
+    display: inline;
+  }
+}
+
+@include desktop {
+  .heading {
+    gap: 24px;
+  }
+
+  h2 {
+    font-size: 40px;
+  }
+
+  a {
+    font-size: 13px;
+  }
+}

@@ -1,0 +1,36 @@
+<header>
+  <div class="bar">
+    <a class="identity" routerLink="/" aria-label="The New Covenant Church of Christ, home">
+      <img class="emblem" src="assets/images/church-emblem.png" alt="" width="72" height="72">
+      <span class="wordmark">
+        <span class="name">THE NEW COVENANT<br>CHURCH OF CHRIST</span>
+        <span class="tagline">Heaven is waiting for us</span>
+      </span>
+    </a>
+
+    <nav class="links" aria-label="Primary">
+      @for (item of items; track item.label) {
+        <a [routerLink]="item.link" [fragment]="item.fragment"
+           [routerLinkActive]="item.fragment ? '' : 'active'"
+           [routerLinkActiveOptions]="{exact: true}">{{ item.label }}</a>
+      }
+    </nav>
+    <a appButton class="join" routerLink="/" fragment="join">Join Us</a>
+
+    <button class="menu-toggle" type="button" aria-label="Menu" aria-controls="mobile-menu"
+            [attr.aria-expanded]="menuOpen()" (click)="toggleMenu()">
+      <img src="assets/icons/menu.svg" alt="" width="24" height="24">
+    </button>
+  </div>
+
+  @if (menuOpen()) {
+    <nav id="mobile-menu" class="mobile-menu" aria-label="Primary">
+      @for (item of items; track item.label) {
+        <a [routerLink]="item.link" [fragment]="item.fragment"
+           [routerLinkActive]="item.fragment ? '' : 'active'"
+           [routerLinkActiveOptions]="{exact: true}" (click)="closeMenu()">{{ item.label }}</a>
+      }
+      <a appButton routerLink="/" fragment="join" (click)="closeMenu()">Join Us</a>
+    </nav>
+  }
+</header>

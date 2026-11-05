@@ -11,7 +11,7 @@ describe('BranchCardComponent', () => {
       imports: [BranchCardComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(BranchCardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

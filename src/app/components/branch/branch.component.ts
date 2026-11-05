@@ -1,20 +1,12 @@
-import { Component } from '@angular/core';
-import {BranchDetailsComponent} from "../branch-details/branch-details.component";
-import { Router } from '@angular/router';
-import {CommonModule} from "@angular/common";
+import {Component} from '@angular/core';
+import {BranchDetailsComponent} from '../branch-details/branch-details.component';
 
 @Component({
   selector: 'app-branch',
+  template: '<app-branch-details></app-branch-details>',
   standalone: true,
-  imports: [
-    CommonModule,
-    BranchDetailsComponent,
-  ],
-  templateUrl: './branch.component.html',
-  styleUrl: './branch.component.scss'
+  styleUrl: './branch.component.scss',
+  imports: [BranchDetailsComponent]
 })
 export class BranchComponent {
-  state = this.router.getCurrentNavigation()?.extras.state;
-  constructor(private router: Router) {}
-
 }

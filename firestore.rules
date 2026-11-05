@@ -1,0 +1,41 @@
+rules_version = '2';
+
+// NCCC Firestore rules.
+// Public website: everyone can read published content. Nobody can write from a client.
+// Writes happen with the Admin SDK (which bypasses these rules) until admin login is added.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // --- New collections (see migration plan) ---------------------------------------------
+
+    // Every query for these must filter on the same field, e.g. where('status', '==', 'published').
+    match /branches/{id} {
+      allow read: if true;     // Branch visibility ('inactive') is applied in the app.
+      allow write: if false;
+    }
+
+    // No contact information is stored on pastors.
+    match /pastors/{id} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    match /events/{id} {
+      allow read: if resource.data.status == 'published';
+      allow write: if false;
+    }
+
+    match /announcements/{id} {
+      allow read: if resource.data.status == 'published';
+      allow write: if false;
+    }
+
+    match /documents/{id} {
+      allow read: if resource.data.visibility == 'public';
+      allow write: if false;
+    }
+
+    // Everything else is denied by default. That includes the legacy Branches, Events and
+    // Pastors collections, which are no longer readable (and are scheduled for deletion).
+  }
+}

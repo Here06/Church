@@ -1,0 +1,5 @@
+<div class="symbol" [class.framed]="value().framed">
+  <img [src]="value().icon" alt="" [style.width.px]="value().framed ? null : (value().iconSize ?? 26)">
+</div>
+<p class="label">{{ value().label }}</p>
+<p class="caption">{{ value().caption }}</p>

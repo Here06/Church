@@ -1,0 +1,24 @@
+<section class="hero" aria-labelledby="hero-title">
+  <div class="intro">
+    <span class="accent" aria-hidden="true"></span>
+    <h1 id="hero-title">
+      <span>Faith <span class="pipe" aria-hidden="true">|</span> Community <span class="pipe" aria-hidden="true">|</span></span>
+      <span>A Renewed World</span>
+    </h1>
+    <p class="lead">
+      We are a Christ-centred community, proclaiming the new covenant and sharing God’s love with the world.
+    </p>
+    <button appButton variant="outline" type="button">Watch Online&nbsp;&nbsp;▷</button>
+  </div>
+
+  <figure class="media">
+    <img class="photo" [src]="image()" [alt]="imageAlt()">
+    <figcaption>
+      <img class="position" src="assets/icons/slide-position.svg" alt="" width="46" height="5">
+      <span class="scripture">
+        <span class="reference">{{ scriptureReference() }}</span>
+        <span class="verse">{{ scriptureText() }}</span>
+      </span>
+    </figcaption>
+  </figure>
+</section>

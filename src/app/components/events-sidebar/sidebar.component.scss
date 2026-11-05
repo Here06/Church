@@ -1,0 +1,39 @@
+.event-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  max-height: 80vh;
+  gap: 12px;
+}
+
+.event-tile {
+  background-color: #ecf0f1;
+  padding: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #dcdde1;
+  }
+
+  h4 {
+    margin: 0 0 6px;
+    font-size: 1.1rem;
+    color: #2c3e50;
+  }
+
+  p {
+    margin: 4px 0;
+    font-size: 0.95rem;
+    color: #34495e;
+  }
+}
+
+
+.highlight {
+  background-color: #dcdde1;
+  transition: background-color 0.5s ease;
+}

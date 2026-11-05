@@ -1,4 +1,22 @@
-@import 'colors';
+@use './design/colors' as *;
+@use "tailwindcss";
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: $page;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+// NCCC site shell uses DM Sans (see design/_tokens.scss).
+app-root {
+  display: block;
+  min-height: 100%;
+  font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-variation-settings: 'opsz' 14;
+  color: $ink;
+}
