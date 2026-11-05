@@ -1,8 +1,7 @@
 import {Component} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {BranchesService} from '../../services/branch-services';
-import {docData, DocumentReference} from '@angular/fire/firestore';
-import {delay, map, of, switchMap} from 'rxjs';
+import {BranchDirectoryService, BranchWithPastors} from '../../data/services/branch-directory.service';
+import {map, Observable, switchMap} from 'rxjs';
 import {AsyncPipe} from '@angular/common';
 
 @Component({
@@ -13,20 +12,12 @@ import {AsyncPipe} from '@angular/common';
   styleUrl: './branch-details.component.scss'
 })
 export class BranchDetailsComponent {
-  branch$ = this.route.params.pipe(
-    delay(5000), ///Todo: Remove
-    switchMap(params => this.branchService.getBranchById(params['id'])),
-    switchMap(branch => {
-      if (branch.pastor instanceof DocumentReference) {
-        return docData(branch.pastor).pipe(
-          map(pastorDoc => ({...branch, pastor: pastorDoc}))
-        );
-      }
-      return of(branch);
-    })
+  /** `'not-found'` when no branch has the requested id. */
+  branch$: Observable<BranchWithPastors | 'not-found'> = this.route.params.pipe(
+    switchMap(params => this.directory.getBranch(params['id'])),
+    map(branch => branch ?? 'not-found' as const)
   );
 
-
-  constructor(private route: ActivatedRoute, private branchService: BranchesService) {
+  constructor(private route: ActivatedRoute, private directory: BranchDirectoryService) {
   }
 }

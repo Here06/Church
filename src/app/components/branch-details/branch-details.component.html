@@ -1,20 +1,42 @@
 <div class="branch-page">
-  @if (branch$ | async; as branch) {
-    <div class="branch-background"
-         [style.background-image]="'url(' + (branch.imagePath || 'assets/logo.png') + ')'">
+  @let branch = branch$ | async;
+  @if (branch === 'not-found') {
+    <div class="branch-details">
+      <h2>Branch not found</h2>
+      <p>We could not find that branch. Please return to the list of branches.</p>
     </div>
-
+  } @else if (branch) {
+    <div class="branch-background" style="background-image: url('assets/logo.png')"></div>
 
     <div class="branch-details">
       <h2>{{ branch.name }}</h2>
-      <p>Service: {{ branch.service }}</p>
-      <p>
-        Address:
-        <a [href]="branch.address?.googleLink" target="_blank">
-          {{ branch.address?.googleLink }}
-        </a>
-      </p>
-      <p>Pastor: {{ branch.pastor?.initials }} {{ branch.pastor?.lastName }}</p>
+      <p>Region: {{ branch.region }}</p>
+      @if (branch.serviceTimes.length) {
+        <p>
+          Service:
+          @for (service of branch.serviceTimes; track $index; let last = $last) {
+            {{ service.day }} {{ service.time }}@if (service.label) { ({{ service.label }})}@if (!last) {, }
+          }
+        </p>
+      }
+      @if (branch.address?.text || branch.address?.googleLink) {
+        <p>
+          Address:
+          @if (branch.address?.googleLink) {
+            <a [href]="branch.address!.googleLink" target="_blank" rel="noopener">{{ branch.address!.text ?? 'View on map' }}</a>
+          } @else {
+            {{ branch.address!.text }}
+          }
+        </p>
+      }
+      @if (branch.pastors.length) {
+        <p>{{ branch.pastors.length > 1 ? 'Pastors' : 'Pastor' }}:</p>
+        <ul class="pastors">
+          @for (pastor of branch.pastors; track pastor.id) {
+            <li>{{ pastor.displayName }}@if (pastor.isLead && branch.pastors.length > 1) { (lead)}</li>
+          }
+        </ul>
+      }
       @if (branch.contact?.phone) {
         <p>Phone: {{ branch.contact!.phone }}</p>
       }

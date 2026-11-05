@@ -1,11 +1,12 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, DestroyRef, inject, OnInit} from '@angular/core';
+import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {CalendarEvent, CalendarModule} from 'angular-calendar';
 import {CommonModule} from '@angular/common';
-import {EventsService} from "../../services/events-service";
+import {EventsCalendarService} from "../../data/services/events-calendar.service";
+import {EVENT_TYPE_LABELS} from "../../data/models/church-event.model";
 import {SidebarComponent} from "../events-sidebar/sidebar.component";
 import {addMonths, subMonths} from "date-fns";
 import {eventTypeColorMap} from "../../../design/event-type-colours";
-import {mapToEventType} from "./event-type-enum";
 
 @Component({
   selector: 'app-calendar',
@@ -15,7 +16,8 @@ import {mapToEventType} from "./event-type-enum";
   styleUrls: ['./calendar.component.scss']
 })
 export class CalendarComponent implements OnInit {
-  private readonly eventsService = inject(EventsService);
+  private readonly eventsService = inject(EventsCalendarService);
+  private readonly destroyRef = inject(DestroyRef);
 
   viewDate: Date = new Date();
   allEvents: CalendarEvent[] = [];
@@ -27,21 +29,19 @@ export class CalendarComponent implements OnInit {
   }
 
   loadUpComingEvents(): void {
-    this.eventsService.getUpcomingEvents().subscribe(churchEvents => {
-      this.allEvents = churchEvents.map(event => {
-        const eventType = mapToEventType(event.type ?? '');
-        const color = eventType ? eventTypeColorMap[eventType] : {primary: '#7f8c8d', secondary: '#ecf0f1'};
-        return {
-          id: event.id,
-          start: event.start,
-          title: event.name,
-          color,
-          meta: {
-            description: eventType ?? 'No description',
-            venue: event.place,
-          }
-        };
-      });
+    this.eventsService.getUpcoming().pipe(takeUntilDestroyed(this.destroyRef)).subscribe(churchEvents => {
+      this.allEvents = churchEvents.map(event => ({
+        id: event.id,
+        start: event.start,
+        end: event.end,
+        allDay: event.allDay,
+        title: event.name,
+        color: eventTypeColorMap[event.type],
+        meta: {
+          description: EVENT_TYPE_LABELS[event.type],
+          venue: event.venueLabel,
+        }
+      }));
 
       this.filterEventsForMonth(this.viewDate);
     });

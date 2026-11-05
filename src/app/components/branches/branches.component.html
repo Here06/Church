@@ -9,7 +9,7 @@
     @for (branch of branches; track branch.id; let i = $index) {
       <app-branch-card
         [id]="branch.id"
-        [image]="branch.image"
+        [name]="branch.name"
         class="card-animate"
         [style.animation-delay.ms]="i * 200">
       </app-branch-card>
