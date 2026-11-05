@@ -1,0 +1,177 @@
+@use 'tokens' as *;
+
+:host {
+  display: block;
+  position: relative;
+  z-index: 10;
+  background: $page;
+  border-bottom: 1px solid $rule;
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px 24px;
+}
+
+.identity {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  color: $ink;
+  text-decoration: none;
+}
+
+.emblem {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.wordmark {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.name {
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.tagline {
+  color: $gold;
+  font-size: 7.7px;
+  font-weight: 600;
+}
+
+.links,
+.join {
+  display: none;
+}
+
+.menu-toggle {
+  padding: 0;
+  border: 0;
+  border-radius: $radius-sm;
+  background: none;
+  line-height: 0;
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 2px solid $gold;
+    outline-offset: 4px;
+  }
+}
+
+.mobile-menu {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 24px 20px;
+  border-top: 1px solid $rule;
+  background: $surface;
+
+  a:not([appButton]) {
+    padding: 12px 0;
+    border-bottom: 1px solid $rule;
+    color: $ink;
+    font-weight: 500;
+    text-decoration: none;
+
+    &.active {
+      font-weight: 700;
+    }
+  }
+
+  [appButton] {
+    align-self: flex-start;
+    margin-top: 16px;
+  }
+}
+
+@include tablet {
+  .bar {
+    padding: 24px 40px;
+  }
+
+  .emblem {
+    width: 56px;
+    height: 56px;
+  }
+
+  .name {
+    font-size: 16px;
+  }
+
+  .tagline {
+    font-size: 8.5px;
+  }
+
+  .mobile-menu {
+    padding: 8px 40px 20px;
+  }
+}
+
+@include desktop {
+  .bar {
+    padding: 28px 64px;
+  }
+
+  .emblem {
+    width: 72px;
+    height: 72px;
+  }
+
+  .identity {
+    gap: 16px;
+  }
+
+  .name {
+    font-size: 20px;
+  }
+
+  .tagline {
+    font-size: 10px;
+  }
+
+  .links {
+    display: flex;
+    align-items: center;
+    gap: 27px;
+    margin-left: auto;
+    margin-right: 11px; // 27px gap to the Join Us button, minus the bar's 16px gap
+
+    a {
+      padding-bottom: 7px;
+      border-bottom: 2px solid transparent;
+      color: $ink;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+
+      &:hover {
+        color: $gold;
+      }
+
+      &.active {
+        border-bottom-color: $gold;
+        color: $ink;
+        font-weight: 700;
+      }
+    }
+  }
+
+  .join {
+    display: inline-flex;
+  }
+
+  .menu-toggle,
+  .mobile-menu {
+    display: none;
+  }
+}

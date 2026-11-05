@@ -1,0 +1,38 @@
+@use 'tokens' as *;
+
+.strip {
+  padding: 28px 24px;
+  border-top: 1px solid $rule;
+  border-bottom: 1px solid $rule;
+  background: $surface;
+}
+
+ul {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@include tablet {
+  .strip {
+    padding: 32px 40px;
+  }
+
+  ul {
+    gap: 32px 16px;
+  }
+}
+
+@include desktop {
+  .strip {
+    padding: 34px 64px;
+  }
+
+  ul {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 24px;
+  }
+}

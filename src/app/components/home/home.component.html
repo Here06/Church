@@ -1,19 +1,13 @@
-<section id="vision">
-  <h2>Our Vision</h2>
-  <app-vision></app-vision>
-</section>
+<app-hero
+  image="assets/images/hero-cross.jpg"
+  imageAlt="A cross on a hilltop at sunrise"
+  scriptureReference="Matthew 28:19–20"
+  scriptureText="“Go and make disciples of all nations...”" />
 
-<section id="mission">
-  <h2>Our Mission</h2>
-  <app-mission></app-mission>
-</section>
+<app-values-strip />
 
-<section id="motto">
-  <h2>Our Motto</h2>
-  <app-motto></app-motto>
-</section>
+@if (upcoming$ | async; as events) {
+  <app-event-list [events]="events" />
+}
 
-<section id="history">
-  <h2>Our Story</h2>
-  <app-history></app-history>
-</section>
+<app-about image="assets/images/about-community.jpg" />

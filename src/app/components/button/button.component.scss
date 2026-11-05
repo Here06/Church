@@ -1,0 +1,38 @@
+@use 'tokens' as *;
+
+:host {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-height: 52px;
+  padding: 14px 22px;
+  border: 1px solid $ink;
+  border-radius: $radius-md;
+  background: $ink;
+  color: $surface;
+  font: 700 14px/1.4 $font-body;
+  letter-spacing: -0.35px;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+:host(:hover) {
+  background: $ink-hover;
+}
+
+:host(.outline) {
+  background: $surface;
+  color: $ink;
+}
+
+:host(.outline:hover) {
+  background: $tint;
+}
+
+:host(:focus-visible) {
+  outline: 2px solid $gold;
+  outline-offset: 2px;
+}

@@ -1,0 +1,51 @@
+@use 'tokens' as *;
+
+footer {
+  background: $ink;
+  color: $surface;
+  font-weight: 600;
+}
+
+.rule {
+  height: 3px;
+  background: $gold;
+}
+
+.closing {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 24px;
+  text-align: center;
+}
+
+p {
+  margin: 0;
+  font-size: 10px;
+}
+
+.tagline {
+  display: none;
+}
+
+@include tablet {
+  .closing {
+    justify-content: space-between;
+    padding: 36px 40px;
+  }
+
+  p {
+    font-size: 11px;
+  }
+
+  .tagline {
+    display: block;
+    font-size: 12px;
+  }
+}
+
+@include desktop {
+  .closing {
+    padding: 36px 64px;
+  }
+}

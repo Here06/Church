@@ -1,0 +1,14 @@
+<article class="card">
+  <div class="photo">
+    <img [src]="event().image" alt="" loading="lazy">
+    <div class="date">
+      <span class="month">{{ event().month }}</span>
+      <span class="day">{{ event().day }}</span>
+    </div>
+  </div>
+  <div class="info">
+    <h3>{{ event().title }}</h3>
+    <p><img src="assets/icons/clock.svg" alt="" width="14" height="14">{{ event().time }}</p>
+    <p><img src="assets/icons/map-pin.svg" alt="" width="14" height="14">{{ event().location }}</p>
+  </div>
+</article>
